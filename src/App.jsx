@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex items-center justify-center h-screen bg-slate-600">
+      <div className="flex items-center justify-center relative h-[48.57rem] w-[75rem] bg-green-300 border-8 border-white">
+        <div className="absolute flex justify-between w-full">
+          <div className="h-[29rem] w-[13rem] bg-transparent border-y-8 border-r-8 border-white"></div>
+          <div className="h-[29rem] w-[13rem] bg-transparent border-y-8 border-l-8 border-white"></div>
+        </div>
+        <div className="absolute flex justify-between w-full">
+          <div className="h-[12rem] w-[7rem] bg-transparent border-y-8 border-r-8 border-white"></div>
+          <div className="h-[12rem] w-[7rem] bg-transparent border-y-8 border-l-8 border-white"></div>
+        </div>
+        <div className="h-[48.57rem] w-[8px] bg-white"></div>
+        <div className="h-[16rem] w-[16rem] absolute rounded-full bg-transparent border-8 border-white"></div>
+        <div className="h-[2rem] w-[2rem] absolute rounded-full bg-white"></div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="h-[48.57rem] w-[30rem] bg-green-400"></div>
+    </div>
+  );
 }
 
-export default App
+export default App;
