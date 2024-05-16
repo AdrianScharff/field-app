@@ -1,0 +1,36 @@
+          <div className="flex justify-between items-center px-3 py-2 h-[4rem] w-[20rem] bg-slate-600">
+            <p className="text-white">Cristiano Ronaldo</p>
+            <p className="text-white">99</p>
+            <img
+              className="h-full"
+              src="https://images.hellomagazine.com/horizon/square/2a1b6ecec4ae-cristiano-ronaldo-toned-torso-sauna-selfie-t.jpg?tx=c_limit,w_360"
+              alt=""
+            />
+          </div>
+          <div className="flex justify-between items-center px-3 py-2 h-[4rem] w-[20rem] bg-slate-600">
+            <p className="text-white">Karim Benzema</p>
+            <p className="text-white">99</p>
+            <img
+              className="h-full"
+              src="https://images.hellomagazine.com/horizon/square/2a1b6ecec4ae-cristiano-ronaldo-toned-torso-sauna-selfie-t.jpg?tx=c_limit,w_360"
+              alt=""
+            />
+          </div>
+          <div className="flex justify-between items-center px-3 py-2 h-[4rem] w-[20rem] bg-slate-600">
+            <p className="text-white">Kylian Mbappe</p>
+            <p className="text-white">99</p>
+            <img
+              className="h-full"
+              src="https://images.hellomagazine.com/horizon/square/2a1b6ecec4ae-cristiano-ronaldo-toned-torso-sauna-selfie-t.jpg?tx=c_limit,w_360"
+              alt=""
+            />
+          </div>
+          <div className="flex justify-between items-center px-3 py-2 h-[4rem] w-[20rem] bg-slate-600">
+            <p className="text-white">Diego Armando Maradonna Martinez</p>
+            <p className="text-white">99</p>
+            <img
+              className="h-full"
+              src="https://images.hellomagazine.com/horizon/square/2a1b6ecec4ae-cristiano-ronaldo-toned-torso-sauna-selfie-t.jpg?tx=c_limit,w_360"
+              alt=""
+            />
+          </div>
