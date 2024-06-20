@@ -1,9 +1,17 @@
 import PropTypes from 'prop-types'
+import { useDroppable } from '@dnd-kit/core'
 
 const OptionsSection = ({ children }) => {
+  const { isOver, setNodeRef } = useDroppable({
+    id: 'optionsSection'
+  })
+
   return (
-    <div className='flex justify-center h-[48.57rem] w-[30rem] bg-green-500'>
-      <ul className='flex flex-col gap-1 mt-3'>{children}</ul>
+    <div
+      ref={setNodeRef}
+      className={`flex justify-center h-[48.57rem] w-[30rem] ${isOver ? 'bg-green-300' : 'bg-green-500'}`}
+    >
+      <ul className='flex flex-col gap-1 my-3 p-2'>{children}</ul>
     </div>
   )
 }

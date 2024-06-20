@@ -19,7 +19,6 @@ const FieldLines = () => {
       <MiddleLine />
       <CenterCircleLine />
       <CenterSpot />
-      <div className='absolute top-0 left-0 bg-blue-500'>Hello world</div>
     </>
   )
 }

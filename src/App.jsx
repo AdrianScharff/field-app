@@ -22,7 +22,7 @@ function App () {
     if (over && over.id === 'field' && !fieldPlayers.some(player => player.id === active.id)) {
       setOptionPlayers(players => players.filter(player => player.id !== active.id))
       setFieldPlayers(players => [...players, activePlayer])
-    } else if (!over && !optionPlayers.some(player => player.id === active.id)) {
+    } else if (over && over.id === 'optionsSection' && !optionPlayers.some(player => player.id === active.id)) {
       setOptionPlayers(players => [...players, activePlayer])
       setFieldPlayers(players => players.filter(player => player.id !== active.id))
     }
