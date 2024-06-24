@@ -15,6 +15,39 @@ function App () {
 
   const [optionPlayers, setOptionPlayers] = useState(playersArray)
   const [fieldPlayers, setFieldPlayers] = useState([])
+  const [optionsRect, setOptionsRect] = useState(null)
+
+  const handleRectChange = (newRect) => {
+    setOptionsRect(newRect)
+  }
+
+  function restrictToBoundingRect (transform, rect, boundingRect) {
+    const value = {
+      ...transform
+    }
+
+    if (rect.top + transform.y <= boundingRect.top) {
+      value.y = boundingRect.top - rect.top
+    } else if (rect.bottom + transform.y >= boundingRect.top + boundingRect.height) {
+      value.y = boundingRect.top + boundingRect.height - rect.bottom
+    }
+
+    if (rect.left + transform.x <= boundingRect.left) {
+      value.x = boundingRect.left - rect.left
+    } else if (rect.right + transform.x >= boundingRect.left + boundingRect.width) {
+      value.x = boundingRect.left + boundingRect.width - rect.right
+    }
+
+    return value
+  }
+
+  const restrictToDroppables = ({ draggingNodeRect, transform }) => {
+    if (!draggingNodeRect || !optionsRect) {
+      return transform
+    }
+
+    return restrictToBoundingRect(transform, draggingNodeRect, optionsRect)
+  }
 
   const handleDragEnd = (event) => {
     const { active, over } = event
@@ -22,14 +55,14 @@ function App () {
     if (over && over.id === 'field' && !fieldPlayers.some(player => player.id === active.id)) {
       setOptionPlayers(players => players.filter(player => player.id !== active.id))
       setFieldPlayers(players => [...players, activePlayer])
-    } else if (over && over.id === 'optionsSection' && !optionPlayers.some(player => player.id === active.id)) {
+    } else if (over && over.id === 'options-section' && !optionPlayers.some(player => player.id === active.id)) {
       setOptionPlayers(players => [...players, activePlayer])
       setFieldPlayers(players => players.filter(player => player.id !== active.id))
     }
   }
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext onDragEnd={handleDragEnd} modifiers={[restrictToDroppables]}>
       <FieldBackground>
         <Field id='field'>
           {fieldPlayers.map(player => (
@@ -42,7 +75,7 @@ function App () {
             />
           ))}
         </Field>
-        <OptionsSection>
+        <OptionsSection id='options-section' onRectChange={handleRectChange}>
           {optionPlayers.map(player => (
             <PlayerOption
               key={player.id}
