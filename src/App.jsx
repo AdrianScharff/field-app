@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { DndContext } from '@dnd-kit/core'
-import PlayerOption from './components/PlayerOption'
-import Field from './components/Field'
 import FieldBackground from './components/FieldBackground'
+import GreenArea from './components/GreenArea'
+import Field from './components/Field'
 import OptionsSection from './components/OptionsSection'
+import PlayerOption from './components/PlayerOption'
 
 function App () {
   const playersArray = [
@@ -15,10 +16,10 @@ function App () {
 
   const [optionPlayers, setOptionPlayers] = useState(playersArray)
   const [fieldPlayers, setFieldPlayers] = useState([])
-  const [optionsRect, setOptionsRect] = useState(null)
+  const [greenAreaRect, setGreenAreaRect] = useState(null)
 
   const handleRectChange = (newRect) => {
-    setOptionsRect(newRect)
+    setGreenAreaRect(newRect)
   }
 
   function restrictToBoundingRect (transform, rect, boundingRect) {
@@ -42,11 +43,11 @@ function App () {
   }
 
   const restrictToDroppables = ({ draggingNodeRect, transform }) => {
-    if (!draggingNodeRect || !optionsRect) {
+    if (!draggingNodeRect || !greenAreaRect) {
       return transform
     }
 
-    return restrictToBoundingRect(transform, draggingNodeRect, optionsRect)
+    return restrictToBoundingRect(transform, draggingNodeRect, greenAreaRect)
   }
 
   const handleDragEnd = (event) => {
@@ -64,28 +65,30 @@ function App () {
   return (
     <DndContext onDragEnd={handleDragEnd} modifiers={[restrictToDroppables]}>
       <FieldBackground>
-        <Field id='field'>
-          {fieldPlayers.map(player => (
-            <PlayerOption
-              key={player.id}
-              id={player.id}
-              name={player.name}
-              rate={player.rate}
-              image={player.image}
-            />
-          ))}
-        </Field>
-        <OptionsSection id='options-section' onRectChange={handleRectChange}>
-          {optionPlayers.map(player => (
-            <PlayerOption
-              key={player.id}
-              id={player.id}
-              name={player.name}
-              rate={player.rate}
-              image={player.image}
-            />
-          ))}
-        </OptionsSection>
+        <GreenArea onRectChange={handleRectChange}>
+          <Field id='field'>
+            {fieldPlayers.map(player => (
+              <PlayerOption
+                key={player.id}
+                id={player.id}
+                name={player.name}
+                rate={player.rate}
+                image={player.image}
+              />
+            ))}
+          </Field>
+          <OptionsSection id='options-section'>
+            {optionPlayers.map(player => (
+              <PlayerOption
+                key={player.id}
+                id={player.id}
+                name={player.name}
+                rate={player.rate}
+                image={player.image}
+              />
+            ))}
+          </OptionsSection>
+        </GreenArea>
       </FieldBackground>
     </DndContext>
   )

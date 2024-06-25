@@ -17,7 +17,7 @@ const PlayerOption = ({ id, name, rate, image }) => {
       style={style}
       {...listeners}
       {...attributes}
-      className='flex justify-between items-center px-3 py-2 h-[4rem] w-[20rem] bg-slate-600 z-40'
+      className='flex justify-between items-center px-3 py-2 h-[4rem] w-[15rem] 2xl:w-[20rem] bg-slate-600 z-40'
     >
       <p className='text-white'>{name}</p>
       <p className='text-white'>{rate}</p>

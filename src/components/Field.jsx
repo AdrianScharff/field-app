@@ -10,7 +10,7 @@ const Field = ({ id, children }) => {
   return (
     <div
       ref={setNodeRef}
-      className={`flex items-center justify-center relative h-[48.57rem] w-[75rem] ${isOver ? 'bg-green-300' : 'bg-green-500'} border-8 border-white`}
+      className={`flex items-center justify-center relative h-[48.57rem] w-[70%] ${isOver ? 'bg-green-300' : 'bg-green-500'} border-8 border-white`}
     >
       <div className='z-10 flex flex-col gap-20'>
         {children}
