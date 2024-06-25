@@ -1,27 +1,41 @@
 import PropTypes from 'prop-types'
 import { useDroppable } from '@dnd-kit/core'
-import { useEffect } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 
 const OptionsSection = ({ id, children, onRectChange }) => {
   const { isOver, setNodeRef, rect } = useDroppable({
     id
   })
+  const nodeRef = useRef(null)
+
+  const updateRect = useCallback(() => {
+    if (rect && rect.current) {
+      console.log(rect.current.rect)
+      onRectChange(rect.current.rect)
+    }
+  }, [rect, onRectChange])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (rect && rect.current) {
-        console.log('OptionsSection rect:', rect.current.rect)
-        onRectChange(rect.current.rect)
-        clearInterval(interval)
+    const handleResize = () => {
+      if (nodeRef.current) {
+        setNodeRef(nodeRef.current)
       }
-    }, 100)
+    }
 
-    return () => clearInterval(interval)
-  }, [rect, onRectChange])
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [setNodeRef, updateRect])
 
   return (
     <div
-      ref={setNodeRef}
+      ref={(node) => {
+        setNodeRef(node)
+        nodeRef.current = node
+        setTimeout(updateRect, 0)
+      }}
       className={`flex justify-center h-[48.57rem] w-[30rem] ${isOver ? 'bg-green-300' : 'bg-green-500'}`}
     >
       <ul className='flex flex-col gap-1 my-3 p-2 list-none'>{children}</ul>
