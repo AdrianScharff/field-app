@@ -10,7 +10,6 @@ const OptionsSection = ({ id, children, onRectChange }) => {
 
   const updateRect = useCallback(() => {
     if (rect && rect.current) {
-      console.log(rect.current.rect)
       onRectChange(rect.current.rect)
     }
   }, [rect, onRectChange])
